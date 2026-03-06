@@ -1,6 +1,6 @@
 const userData = require("../userData");
 
-function getAllUser (req, res) {
+function getAllUser (req, res, next) {
     const userDataObj = userData.data;
 
     const responsePayload =  {
@@ -12,7 +12,6 @@ function getAllUser (req, res) {
 }
 
 function getUserByGender (req, res) {
-    
     const queryParams = req.query; // { gender = male }
     const searchedGender = queryParams.gender; // male, female, alien 
     

@@ -1,21 +1,14 @@
 const express = require("express");
-const { HomeResponse, AboutResponse, ContactResponse } = require("./Controllers/HomeController");
 const HomeRouter = require("./Routes/HomeRoute")
 const UserActivityRouter = require("./Routes/UserActivityRoute")
 const server = express();
-const PORT = 8089;
+require('dotenv').config();
+const PORT = process.env.PORT;
 
 
+server.use("/", HomeRouter)
 
-server.get("/", HomeResponse);
-server.get("/home", HomeResponse);
-
-server.get("/abouts", AboutResponse);
-
-server.get("/contacts", ContactResponse);
-
-
-server.get("/fitness", (req, res) => {
+server.get("/fitness", (req, res, next) => {
     const fitnessRegieme = {
             name: "utkarsh express",
             age: 22,
