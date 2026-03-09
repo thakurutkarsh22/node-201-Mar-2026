@@ -1,12 +1,19 @@
 const express = require("express");
 const HomeRouter = require("./Routes/HomeRoute")
 const UserActivityRouter = require("./Routes/UserActivityRoute")
+const BlogsRouter = require("./Routes/BlogsRoute")
+const mongoose = require("mongoose");
 const server = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 
 
+// this is GLOBAL MIDLWARE 
+server.use(express.json()) // to parse the incoming request body in json format
+
 server.use("/", HomeRouter)
+
+
 
 server.get("/fitness", (req, res, next) => {
     const fitnessRegieme = {
@@ -26,7 +33,16 @@ server.get("/fitness", (req, res, next) => {
     
 })
 
+// new functionality for blogs 
+server.use("/api/v1/blogs", BlogsRouter)
+
 server.use("/api/v1/activity/users", UserActivityRouter)
+
+const database = process.env.DB_URI;
+mongoose.connect(database).then(() => {
+    console.log("Database connected successfully");
+})
+
 
 
 server.listen(PORT, () => {
