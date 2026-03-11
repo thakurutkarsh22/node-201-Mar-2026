@@ -2,6 +2,7 @@ const express = require("express");
 const HomeRouter = require("./Routes/HomeRoute")
 const UserActivityRouter = require("./Routes/UserActivityRoute")
 const BlogsRouter = require("./Routes/BlogsRoute")
+const AuthRouter = require("./Routes/AuthRoute")
 const mongoose = require("mongoose");
 const server = express();
 require('dotenv').config();
@@ -12,8 +13,6 @@ const PORT = process.env.PORT;
 server.use(express.json()) // to parse the incoming request body in json format
 
 server.use("/", HomeRouter)
-
-
 
 server.get("/fitness", (req, res, next) => {
     const fitnessRegieme = {
@@ -35,6 +34,9 @@ server.get("/fitness", (req, res, next) => {
 
 // new functionality for blogs 
 server.use("/api/v1/blogs", BlogsRouter)
+
+// register and login
+server.use("/api/v1/auth", AuthRouter)
 
 server.use("/api/v1/activity/users", UserActivityRouter)
 
