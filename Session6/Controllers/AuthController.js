@@ -1,6 +1,13 @@
 const UserModel = require("../Models/UserModel");
 const AuthService = require("../Services/AuthService");
 
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns {Promise<void>}
+ */
+
 async function register(req, res) {
 
     const body = req.body; 

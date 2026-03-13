@@ -7,13 +7,13 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug Session5",
+            "name": "Debug Session6",
             "skipFiles": [
                 "<node_internals>/**",
-                "${workspaceFolder}/Session5/node_modules/**"
+                "${workspaceFolder}/Session6/node_modules/**"
             ],
-            "program": "${workspaceFolder}/Session5/index.js",
-            "cwd": "${workspaceFolder}/Session5",
+            "program": "${workspaceFolder}/Session6/index.js",
+            "cwd": "${workspaceFolder}/Session6",
             "console": "integratedTerminal"
         }
     ]
