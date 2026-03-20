@@ -37,6 +37,9 @@ async function login(req, res) {
 
     try {
         const response = await AuthService.login(email, password);
+        const token = response.token;
+        // this is how you set cookies 
+        res.cookie('session_token', token);
         res.status(200).json({
             message: "user logged in successfully",
             data: response
