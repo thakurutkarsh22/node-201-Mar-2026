@@ -1,5 +1,9 @@
 const UserModel = require("../Models/UserModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
+
+
 
 // Dependency injection 
 class AuthService {
@@ -44,7 +48,20 @@ class AuthService {
                 const isPasswordMatching = await bcrypt.compare(password, passwordFromDatabase); // true or false
 
                 if(isPasswordMatching) {
-                    return user;
+                    const payload = {
+                        email: user.email,
+                        contact: user.contact,
+                        age: user.age
+                    }
+
+                    const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "10000" })
+
+                    const response = {
+                        user,
+                        token: jwtToken
+                    }
+
+                    return response;
                 } else {
                     throw new Error("invalid password");
                 }
