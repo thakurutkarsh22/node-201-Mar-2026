@@ -4,9 +4,13 @@ const UserActivityRouter = require("./Routes/UserActivityRoute")
 const BlogsRouter = require("./Routes/BlogsRoute")
 const AuthRouter = require("./Routes/AuthRoute")
 const mongoose = require("mongoose");
+const passport = require("passport");
+const PassportConfig = require("./Config/Passport");
 const server = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
+
+PassportConfig(passport);// we are basically telling my application this is a new way to authenticate
 
 
 // this is GLOBAL MIDLWARE 
